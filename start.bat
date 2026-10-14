@@ -1,0 +1,3 @@
+@echo off
+echo Starting React Scroll Animation Project...
+npm run dev -- --open

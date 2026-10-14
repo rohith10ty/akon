@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+@import "./styles/gallery-layouts.css";
+@import "./styles/orbit-menu.css";
+
+:root {
+	font-size: 18px;
+	--color-text: #ffffff;
+	--color-bg: #131417;
+	--color-link: #adadad;
+	--color-link-hover: #ffffff;
+	--color-label: #adadad;
+	--color-text-alt: #8e8e93;
+	--color-caption: #ffffff;
+	font-family: 'Outfit', sans-serif;
+}
+
+/* Lenis Smooth Scrolling Core */
+html.lenis, html.lenis body {
+	height: auto;
+}
+
+.lenis.lenis-smooth {
+	scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+	overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+	overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+	pointer-events: none;
+}
+
+body {
+	margin: 0;
+	color: var(--color-text);
+	background-color: var(--color-bg);
+	font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+	-ms-overflow-style: none !important;
+	scrollbar-width: none !important;
+}
+
+/* Hide scrollbar completely across Chrome, Safari, Edge, Firefox */
+* {
+	-ms-overflow-style: none !important;
+	scrollbar-width: none !important;
+}
+
+::-webkit-scrollbar {
+	display: none !important;
+	width: 0px !important;
+	height: 0px !important;
+	background: transparent !important;
+}
+
+/* Custom Animation Keyframes */
+@keyframes loaderAnim {
+	to {
+		opacity: 1;
+		transform: scale3d(0.5, 0.5, 1);
+	}
+}

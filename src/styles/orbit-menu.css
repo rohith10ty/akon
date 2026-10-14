@@ -1,0 +1,283 @@
+/* =====================================================
+   ORBIT MENU & HERO TYPOGRAPHY STYLES
+   Inspired by Audix Orbit Studio Menu
+   ===================================================== */
+
+:root {
+  --c-menu-bg: #ffffff;
+  --c-menu-fg: #111111;
+  --c-accent: #ff5a1f;
+  --ff-serif: 'Fraunces', Georgia, serif;
+  --ff-display: 'Anton', 'Arial Black', sans-serif;
+  --ease-menu: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.font-display {
+  font-family: var(--ff-display);
+}
+
+.font-serif-fraunces {
+  font-family: var(--ff-serif);
+}
+
+/* =====================================================
+   HERO TITLE (Ideas in motion style)
+   ===================================================== */
+.hero__title {
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-size: clamp(34px, 5.5vw, 80px);
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.hero__title em {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  color: var(--c-accent);
+}
+
+/* =====================================================
+   TOGGLE BUTTON - Circular with Gooey Hover
+   Completely stable position (no translation / shift)
+   ===================================================== */
+.menu-toggle {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #0e0e0f;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-radius 0.4s var(--ease-menu),
+              background-color 0.4s var(--ease-menu),
+              color 0.3s var(--ease-menu);
+  z-index: 60;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 640px) {
+  .menu-toggle {
+    width: 54px;
+    height: 54px;
+  }
+}
+
+.menu-toggle:hover {
+  border-radius: 48% 52% 42% 58% / 55% 44% 56% 45%;
+  background: var(--c-accent);
+  color: #ffffff;
+}
+
+/* When open on white background, button turns into a striking black circular button */
+.menu-toggle.is-open {
+  background: #111111;
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.menu-toggle.is-open:hover {
+  background: var(--c-accent);
+  color: #ffffff;
+}
+
+.toggle__inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.toggle__line {
+  display: block;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: width 0.4s var(--ease-menu),
+              transform 0.4s var(--ease-menu),
+              opacity 0.3s var(--ease-menu);
+}
+
+.toggle__line:nth-child(1) { width: 22px; }
+.toggle__line:nth-child(2) { width: 14px; }
+.toggle__line:nth-child(3) { width: 18px; }
+
+/* When menu is open → lines morph to a clean plus (+) */
+.menu-toggle.is-open .toggle__line:nth-child(1) {
+  width: 22px;
+  transform: translateY(6.5px) rotate(-90deg);
+}
+
+.menu-toggle.is-open .toggle__line:nth-child(2) {
+  width: 22px;
+}
+
+.menu-toggle.is-open .toggle__line:nth-child(3) {
+  opacity: 0;
+  transform: translateY(-2px);
+}
+
+/* =====================================================
+   MENU OVERLAY (Ink blot spreading effect)
+   ===================================================== */
+.orbit-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+
+body.is-open {
+  overflow: hidden !important;
+}
+
+.orbit-menu.is-open {
+  pointer-events: auto;
+}
+
+.orbit-menu__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.orbit-menu__fill {
+  fill: var(--c-menu-bg);
+}
+
+.orbit-menu__content {
+  position: absolute;
+  inset: 0;
+  padding: 88px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--c-menu-fg);
+  clip-path: circle(var(--cr, 0px) at var(--cx, 100%) var(--cy, 0%));
+  will-change: clip-path;
+}
+
+@media (min-width: 768px) {
+  .orbit-menu__content {
+    padding: 96px 48px 32px;
+  }
+}
+
+/* =====================================================
+   NAV LIST & NON-TRANSLATING HOVER COLOR MORPH
+   ===================================================== */
+.orbit-nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.orbit-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.orbit-nav__item {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  transition: border-color 0.3s ease;
+}
+
+.orbit-nav__item:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.orbit-nav__item:hover {
+  border-color: rgba(255, 90, 31, 0.45);
+}
+
+.orbit-nav__link {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .orbit-nav__link {
+    padding: 11px 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .orbit-nav__link {
+    grid-template-columns: 28px 1fr;
+    gap: 10px;
+    padding: 8px 0;
+  }
+}
+
+.orbit-nav__num {
+  font-family: 'Outfit', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(0, 0, 0, 0.4);
+  transition: color 0.3s ease;
+}
+
+.orbit-nav__link:hover .orbit-nav__num {
+  color: var(--c-accent);
+}
+
+/* Menu item title: STABLE IN PLACE (no translateY), changes color to #ff5a1f */
+.orbit-nav__title {
+  display: block;
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-size: clamp(17px, 2.3vw, 32px);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--c-menu-fg);
+  line-height: 1.1;
+  transition: color 0.3s ease;
+}
+
+.orbit-nav__link:hover .orbit-nav__title {
+  color: var(--c-accent);
+}
+
+.orbit-nav__tag {
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(0, 0, 0, 0.42);
+  transition: color 0.3s ease;
+}
+
+.orbit-nav__link:hover .orbit-nav__tag {
+  color: #111111;
+}
